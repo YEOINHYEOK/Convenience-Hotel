@@ -1,0 +1,70 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.5'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Spring Boot 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA 사용
+	implementation 'org.springframework.boot:spring-boot-starter-security' // 보안 관련
+	implementation 'org.springframework.boot:spring-boot-starter-validation' // 유효성 검사
+	implementation 'org.springframework.boot:spring-boot-starter-web' // RESTful API 및 웹 개발
+	implementation 'org.springframework.boot:spring-boot-starter-mail' // 이메일 전송
+
+
+
+
+	compileOnly 'org.projectlombok:lombok' // Lombok 사용 (getter, setter 자동 생성)
+	annotationProcessor 'org.projectlombok:lombok' // Lombok annotation processor
+	developmentOnly 'org.springframework.boot:spring-boot-devtools' // 개발 도구 (자동 리스타트)
+
+	// 외부 API 연동 관련 (JWT 및 REST 통신)
+	implementation 'com.nimbusds:nimbus-jose-jwt:9.31' // JWT 생성 및 검증 라이브러리
+
+	// QR 코드 생성
+	implementation 'com.google.zxing:core:3.5.2'
+	implementation 'com.google.zxing:javase:3.5.2'
+
+	// 데이터베이스 연동
+	runtimeOnly 'com.mysql:mysql-connector-j' // MySQL 연결 드라이버
+
+	// Apache HttpClient 추가
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13' // HTTP 요청을 위한 라이브러리
+
+	// 테스트 관련 의존성
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' // Spring Boot 테스트
+	testImplementation 'org.springframework.security:spring-security-test' // Spring Security 테스트 관련
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // JUnit 런처
+}
+
+tasks.named('test') {
+	useJUnitPlatform() // JUnit 5 사용
+}
+
+compileJava {
+	options.compilerArgs << "-parameters"
+}
+
+tasks.withType(JavaCompile) {
+	options.compilerArgs += ['-parameters']
+}
