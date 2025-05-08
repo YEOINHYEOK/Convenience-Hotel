@@ -1,0 +1,74 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* 위로 올리기 */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Check In/Check Out 버튼 스타일 */
+.checkin-btn, .checkout-btn {
+  background: linear-gradient(to right, #00b4d8, #0077b6); /* 파란색 그라데이션 */
+  border: none;
+  font-size: 1.2rem; /* 글자 크기 */
+  width: 220px; /* 버튼 크기 */
+  height: 50px; /* 버튼 높이 */
+  padding: 0;
+  text-align: center;
+  margin: 10px;
+  transition: background 0.3s ease;
+}
+
+.checkin-btn:hover, .checkout-btn:hover {
+  background: linear-gradient(to right, #0077b6, #00b4d8); /* 호버 효과 */
+}
+
+/* QR 코드 스캔 영역 */
+.scan-area {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding-bottom: 100%; /* 네모난 비율로 설정 */
+  background-color: black;
+  border: 2px solid white;
+  margin: 0 auto;
+}
+
+.scan-area video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
